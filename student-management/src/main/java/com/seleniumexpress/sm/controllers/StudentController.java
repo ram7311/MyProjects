@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.seleniumexpress.sm.DAO.StudentDAO;
@@ -59,6 +61,26 @@ public class StudentController {
 	public String thankyou() {
 		
 		return "Thank you.... your record has been added to the database";
+	}
+	
+	
+	@GetMapping("/popUpStudent")
+	public String popUpStudent(@RequestParam("userId") int id,Model model) {
+		
+		Student theStudent = studentService.popUpStudent(id);
+		
+		model.addAttribute("student", theStudent);
+		
+		return "update-student";
+	}
+	
+	@PostMapping("/updateStudent")
+	public String updateStudent(@RequestParam("userId") int id,Student student,Model model) {
+		
+		studentService.UpdateStudent(id,student);
+		
+			
+		return "redirect:/showStudent";
 	}
 	
 }

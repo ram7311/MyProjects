@@ -20,15 +20,28 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	public void saveStudent(Student student) {
-		
-		//write the business logic  company criteria
-		
-		if(student.getCountry().equalsIgnoreCase("UK")) {
-			System.out.println("mail sent to :"+student.getName());
+
+		// write the business logic company criteria
+
+		if (student.getCountry().equalsIgnoreCase("UK")) {
+			System.out.println("mail sent to :" + student.getName());
 		}
 
 		studentDAO.saveStudent(student);
 
+	}
+
+	public Student popUpStudent(int id) {
+
+		Student updateStudent = studentDAO.popUpStudent(id);
+
+		return updateStudent;
+	}
+
+	public void UpdateStudent(int id,Student student) {
+
+	studentDAO.UpdateStudent(id,student);
+		
 	}
 
 }

@@ -5,3 +5,10 @@
 				it sends method content as httpsresponseBoday to the webPage
 return "redirect:/thankyou";--> it will redirect to another controller method where @GetMapping("/thankyou") note:(@ResponseBody shouldn't be
 								for "redirect:/thankyou" this controller)..finnally it is for communication between the controller methods
+								
+@ModelAttribute--> to add attribute
+Student student = new Student;
+model.addAttribute("students", student);
+
+easy way @ModelAttribute("students") Student student
+

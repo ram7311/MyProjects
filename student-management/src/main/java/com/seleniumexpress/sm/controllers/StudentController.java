@@ -58,7 +58,7 @@ public class StudentController {
 	@GetMapping("/thankyou")
 	public String thankyou() {
 		
-		return "Thank you.. your record has been added to the database";
+		return "Thank you.... your record has been added to the database";
 	}
 	
 }

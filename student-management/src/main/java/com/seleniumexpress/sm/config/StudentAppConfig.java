@@ -35,8 +35,8 @@ public class StudentAppConfig {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		// set the db info to the datasource object
-		dataSource.setUsername("hbstudent");
-		dataSource.setPassword("hbstudent");
+		dataSource.setUsername("root");
+		dataSource.setPassword("root");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/seleniumexpress?useSSL=false");
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		return dataSource;

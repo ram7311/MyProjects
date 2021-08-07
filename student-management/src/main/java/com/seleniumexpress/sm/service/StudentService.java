@@ -10,5 +10,6 @@ public interface StudentService {
 	void saveStudent(Student student);
 	Student popUpStudent(int id);
 	void UpdateStudent(int id,Student student);
+	void deleteStudent(int id);
 	
 }

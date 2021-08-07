@@ -55,12 +55,24 @@ public class StudentDAOImpl implements StudentDAO {
 
 	public void UpdateStudent(int id,Student student) {
 		Object[] args = {student.getName(),student.getMobile(),student.getCountry(),id};
-		String sql = "update seleniumexpress.students set name=?,mobile=?,country=? where id=?";
+		String sql = "update students set name=?,mobile=?,country=? where id=?";
 		int update = jdbcTemplate.update(sql, args);
 		
 		if(update!=0) {
 			System.out.println("1 record updated....");
 			LOG.info("1 record updated....");
+		}
+		
+	}
+
+	public void deleteStudent(int id) {
+		String sql="delete from students where id=?";
+		int delete = jdbcTemplate.update(sql, id);
+		if(delete!=0) {
+			System.out.println("1 record deleted....");
+		}
+		else {
+			System.out.println("No record is there to delete");
 		}
 		
 	}

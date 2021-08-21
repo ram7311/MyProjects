@@ -1,0 +1,12 @@
+swagger-ui dependency urls
+localhost:8080/v2/api-docs --> this is to share documentation to costumer
+http://localhost:8080/swagger-ui.html --> it will open ui in browser and shows all controller uri's
+
+NEW URL for SWAGGER UI - http://localhost:8080/swagger-ui/ or http://localhost:8080/swagger-ui/index.html
+Add these dependencies to pom.xml instead of the two swagger dependencies.
+
+<dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-boot-starter</artifactId>
+	<version>3.0.0</version>
+</dependency>

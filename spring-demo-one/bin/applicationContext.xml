@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Load the propeties file: sport,properties -->
+	<context:property-placeholder
+		location="classpath:sport.properties" />
+	<!-- Define your beans here -->
+
+	<!-- Constructor dependency injection -->
+	<bean id="myTCoach" class="com.luv2code.springdemo.TrackCoach">
+		<constructor-arg ref="myFortune"></constructor-arg>
+
+	</bean>
+
+	<bean id="myBCoach" class="com.luv2code.springdemo.BaseballCoach"
+		init-method="startup" destroy-method="destroymethod">
+		<constructor-arg ref="myFortune"></constructor-arg>
+
+	</bean>
+
+	<!-- define the dependency -->
+	<bean id="myFortune"
+		class="com.luv2code.springdemo.HappyFortuneService"></bean>
+
+	<!-- setter dependency injection -->
+	<bean id="cricketCoach"
+		class="com.luv2code.springdemo.CricketCoach">
+		<property name="foutuneService" ref="myFortune"></property>
+		<property name="email" value="ramkumar7311@gmail.com"></property>
+		<property name="team" value="Sunrises Hyderabad"></property>
+
+		<property name="email1" value="${foo.email}"></property>
+		<property name="team1" value="${foo.team}"></property>
+	</bean>
+
+	<bean id="practiceActivity"
+		class="com.luv2code.springdemo.PracticeActivity1"></bean>
+
+	<bean id="practiceActivity2"
+		class="com.luv2code.springdemo.PracticeActivity2"></bean>
+
+	<bean id="vollyCoach" class="com.luv2code.springdemo.VollyCoach">
+		<property name="practiceActivity2" ref="practiceActivity2"></property>
+	</bean>
+
+</beans>
+
+
+
+
+

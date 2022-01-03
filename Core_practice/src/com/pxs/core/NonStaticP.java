@@ -1,7 +1,7 @@
 package com.pxs.core;
 
 
-//static variable,method,block,differenet invokings
+//static variable,method,block,different calling
 public class NonStaticP {
 	
 

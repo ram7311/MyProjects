@@ -1,1 +1,22 @@
-Test
+Exceptions:
+Unexpected even during runtime is exception which interrupt the flow of execution.
+Throwable is superclass of all exceptions
+CheckedExceptions:
+Exceptions checked or identified by compiler
+UnCheckedExceptions:
+Exception Occurred at runtime which has to be handled by developer 
+
+CustomizedException:
+This is to create our own exception as per the business logic as developer we have to understand where are the possible areas to rise exceptions
+we can create CustomizedException by extending Exception class and make Constructor chaining.
+
+Exception Propagation:
+transfer the exception handling responsibility to called method 
+
+Throw:
+keyword used to throw customized exception manually
+
+Throws:
+keyword used to transfer responsibility to DefaultException Handler of JVM
+
+refer resources/exception_heirarchy.png

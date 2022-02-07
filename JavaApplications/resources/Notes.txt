@@ -1,0 +1,106 @@
+ -----------------------------Object and Class--------------------------------
+Abstraction --> Partial definition of Object --not 100%
+Class       --> Complete definition of Object --100%
+Interface   --> Specification of Object      --0%
+
+
+ -----------------------Static (block,method,variable)-----------------------
+ -- Static block will be executed before main method executes.
+ -- If any method is declared as Static then no need to create(instantiate) object for it directly we can call the method.
+ -- If there are two classes then can call class name followed by static method name.
+ -- If any variable is declared as static then we can call only in static method or static way.
+ -- can't use non-static variables inside static block.
+ --Static variable can be used inside non-static block.
+ 
+  -----------------------Non-Static (block,method,variable)-----------------------
+ -- Non static variable is also know as instance variable
+-- Static block will be executed before main method executes.
+-- If there are Static and non-static block then priority will goes to Static block first.
+-- If method is declared as non-static then we can't call it directly. need to create object and then call with object reference.
+-- If any variable is declared as non-static then we can call only in non-static method/block
+-- If a variable present inside the class and outside of all the methods and not proceeding by static keyword is called as non-static.
+
+-------------------------Encapsulation--------------------------------------------
+-- Binding data(Hiding data) with methods using single unit that is class inside class will use private keywords and 
+to access those variables can be done through Getters and Setters.
+-- Data Hiding + Abstraction together is known as Encapsualtion.
+-- Data hiding is nothing but declaring the variables as private to prevent access for other classes.
+
+------------------------Polymorphism---------------------------------------------
+-- Polymorphism means many behaviors at a time.
+-- same method name but behavior is based on the parameter that we pass through the methods is Polymorphism.
+
+--- Method Overriding--> If we have two methods with same parameter same name is called MethodOverriding.
+                         It is also know as Runtime polymorphism since the objects are created at run time.
+                         Static polymorphism or Early Binding
+                         Parent and child methods shouldn't be static
+                         
+--- Method Overloading--> If we have two methods with different parameter same name is called MethodOverloading.
+                          It is also know as Compiler time polymorphism since the values are taken at compile time.
+                          Dynamic polymorphism or Late Binding.
+                          
+ -- Method Hiding     --> Both parent and child class methods should be Static.
+                          method resolution is always takes care by compiler based on the reference type.
+                          If reference is parent and object is child class then child class method will be hidden since the parent reference is used.
+                          
+---------------------------Inheritance------------------------------------------------
+-- One object requires all the properties of parent object using extends keyword is know as Inheritance.
+   Below are the types in Inheritance.
+          -- Single Level Inheritance( Single parent-Single child)
+          -- Multi-level Inheritance( Single parent- child1 extends parent- child2 extends child1)
+          -- Multiple Inheritance   (two classes extends one child)(Through interface)
+          -- Hierarchy Inheritance  (Single parent-multiple child)
+          -- Hybrid Inheritance     ( All possibilities)
+   
+   Multiple inheritance not possible in java it can be done through Interfaces.
+   Since the multiple inheritance is not possible Hybrid Inheritance is also not possible in Java.
+   
+---------------------------Interfaces------------------------------------------------
+-- By default inside interface every method is Abstract means doesn't have implementation details.
+-- If we want implementation we can use inherited class or using default modifier.
+-- All the methods inside Interface are abstract public methods.
+-- All Variables inside the Interface are final and static.
+-- Declaration of variables inside the interface is not possible it should be initialised to.
+-- Interfaces used for security to restrict calling methods.
+-- Object can't be created for interface directly it can be done from the inherited class.Interface reference can be used while create object.
+-- Inside Interface Constructor can't create.
+--Constructor means initilising the instance variable but inside interface every variable is static So constructor is not possible.
+-- methods can be access as below
+  //public->protected->default->private....security
+  //private->default->protected->public..visibility..in inheritance we have to increase visibility not security ...i.e..achieved below
+
+-- Three Types of Interfaces are there.
+    1-Normal Interface(can have all the methods)
+    2. SAM(Single Abstract method) or Functional Interface
+    3.Marker Interface(No methods) can be done through Cloneable interface using clone() method from Object class.
+                Tag interface or Ability interface
+                jvm gives info to the compiler to finish the task.
+                If interface doesn't contain any method or fields, implementation then interface is called as Marker interface.
+                
+  ------------------------Abstraction:---------------------------------------
+  
+ --Abstraction means hiding implementation details and showing user specific information.
+ --Abstraction can be done through Interface or using Abstract classes.
+ --If any method is abstract then class also should be mentioned as Abstract class.
+ --We can't create object for Abstract class one more class need to be added through inheritance it can be done.
+ --Since the implementation/definition of object is partial can't create object for it.
+ --Abstract is applicable for methods and classes only not for variable.
+ --If a class extends any abstract class then compulsory we should provide implementation for every abstract method of the parent class 
+    otherwise we have to declare child class as abstract.
+-- we can have an abstract class without any abstract method. 
+-- This allows us to create classes that cannot be instantiated but can only be inherited. 
+
+  ------------------------Constructor:---------------------------------------
+ --Name of the constructor is always same as Class name.
+ --Constructor never return anything.
+ --It is used to allocate the memory for the object.once the object is created automatically constructor will be called no need to call constructor.
+ --If we are not specifying any constructor inside class then default constructor will be there automatically.
+ -- Based on the values passed to the constructor, method will be called.we can use "this" and "super" keywords to call other constructors.
+ -- Constructor chaining .
+ -- this() and super() should be first line inside the constructor.
+-- A constructor in Java can not be abstract, final, static and Synchronized.
+
+
+
+ 
+ 

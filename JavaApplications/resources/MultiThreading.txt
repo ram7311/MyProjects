@@ -1,0 +1,104 @@
+--Multithreading--
+
+Multitasking:
+Process of executing multiple task simultaneously
+
+Process based Multitasking: independent jobs can work simultaneously each job has separate process memory area it is best suitable for OS 
+thread based Multitasking(Multithreading): independent jobs can work simultaneously each job has shared memory area it is best suitable programmable applications,
+here it will switch between each threads easily.
+
+-----------------------------------------------yield()-------------------------------------------------
+
+--Yield method causes to pause the or stop the current execution to give chance to the other threads having same priority.
+--If no waiting thread or waiting thread have same or low priority then will continue the execution.
+--If multiple threads are waiting with the same priority then TS decides which need to be executed.
+--Method which yielded when it will get chance means it depends on TS(Thread Scheduler)
+--Once it's entered into running state when it is yielded then it will come to Ready state to wait to start the execution again in the Thread-LifeCycle
+--public static native void yield();
+
+-----------------------------------------------join()-------------------------------------------------
+
+If thread wants to wait till another thread's to completing execution is called Join() method.
+There may be a chance to through the exception by join() so we need to handle it using throws.
+There are 3 types of join() methods
+           1.public final void join();
+            2.public final void join( long ms);
+            3.public final void join(long ms, int ns);-- occurate time
+ From Running state it will entered into Waiting state to complete other thread execution then again it wil come back to Running state in Thread-Life Cycle.
+          Once the Other Thread completes execution
+          If the time expires
+          If Waiting thread get interrupted---It will comes to Running state back.
+          
+case1:  main thread waits till child threads to completes the execution 
+case2:  Child Thread id Waiting until main Threads to complete.
+case3:  Parent and Child Threads are waiting to complete execution.Than Program will be strucked is called DeadLock situation.
+case4:  IF a Thread calls join method and the same Threads itself then the program will be strucked (Dead Lock situation).Thread has to wait infinite time.
+
+It is overloaded
+It is Final
+It throws IE Exception
+
+-----------------------------------------------sleep()-------------------------------------------------
+
+If a thread don't want to perform any operations for particular amount of time.
+It is overloaded
+It throws IE Exception
+
+--------------------------------------------Synchronized----------------------------
+--Synchronizer is a modifier which is valid for methods and blocks only not for class and variables.
+--If multiple threads try to operate simultaneously on same object then Data inconsistency problem may come.
+--If method id declared as synchronized then at a time only one thread can execute on that given object 
+
+Object level Lock
+Whenever a thread want to execute synchronized method then object level lock is required
+
+Class level lock
+Thread want to execute static synchronized method then class level lock is required
+
+Race condition
+Multiple threads operating simultaneously on the same object causing data in consistency is called Race condition. 
+
+--------------------------------------------Internal Thread communication----------------------------
+
+Two threads can communicate with each pther by using below methods.
+wait()
+notify()
+notifyall()
+
+Thread which needs updation is responsible to call wait() method and which needs to perform is responsible for notify().
+All three methods should call from the synchronized block only.
+wait(), notify(), notifyall() all are present in object class not Thread class.
+If thread calls wait() method immediately thread releases lock and go to the waiting state.
+If thread calls notify() method then thread releases lock not immediately.
+--If we are updating something calling sleep() and join() methods not recomended.
+
+If we use notify() method to give notification for only one waiting thread.If multiple threads are waiting then 1 thread get notofied that is based on JVM.
+If we use notifyall() all the threads get notified of that particular object.
+
+------------------------------------------Daemon Thread---------------------------------------
+The Thread which is executing in the background in called Daemon thread.
+Ex: Garbage collector
+    Attach Listener
+    Signal Dispatcher
+    
+ Main objective of the Daemon Thread id to provide support for the non daemon threads that is main thread.
+ 
+ whenever non-daemon thread terminates automatically all daemon threads will be terminated  irrespective of their position.
+
+
+---------------------------------------------Dead Lock()---------------------------------------
+If two threads are waiting to execute for each other forever is called Dead Lock().
+
+----------------------------------ThreadGroup---------------------------------------------
+Grouping threads into single unit.
+Every Thread group in java is child group for System group.System group is parent for all the thread groups.
+System Group contains--
+      Finalizer
+      Reference Handler
+      Signal Dispatcher
+      Attach Listener
+      
+  syntax: ThreadGroup g= new Threadgroup(String name);
+
+
+

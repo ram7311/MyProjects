@@ -1,0 +1,75 @@
+ -------------------------Exception Handling---------------------------------------
+ -- An exception is an unexpected event, which occurs during the run time that interrupts the normal flow of execution.
+-- Throwable is superclass of all exceptions
+ -- Exception we can handle as a programmer but we cann't handle errors.
+ 
+           1- Checked Exceptions-Compile time
+           2. Unchecked Exceptions-run time
+           3.Error
+           
+1. Checked Exception: Exceptions which are checked by the compiler whether programmer handled Exceptions or not for smooth execution of the program at runtime.
+    The classes which directly inherit throwable class except RunTime Exception and error known as checked exception.
+    ex: SQLException,IOException,FilenotFoundException
+ 
+2. Un-Checked Exception: Exceptions which are not checked by the compiler whether programmer handled Exceptions or not at runtime.
+   RuntimeExceptions and it's child classes and Errors are unchecked Exceptions.
+   The classes which inherit runtime exception are known as Unchecked exception.
+   Ex: Arithmetic Exception, NUllPointer exception,ArrayIndexOutOfBound exception
+   
+ -- All Exceptions and errors types are sub classes of class "Throwable"
+ -- To prevent compile time error we can handle in two ways.
+            - Using try catch block
+            - Using Throws keyword
+ -- FInally block will be executed if we are getting exception or not getting exception(irrespective of Exception)
+
+ 
+
+--Throw:
+keyword used to throw customized exception manually.
+The Java throw keyword is used to throw an exception explicitly
+It is used to throw the exception.
+Using throw keyword, we can only propagate unchecked exception i.e., the checked exception cannot be propagated using throw only
+We are allowed to throw only one exception at a time i.e. we cannot throw multiple exceptions.
+
+Throws:
+keyword used to transfer responsibility to DefaultException Handler of JVM.
+It is used to declare the exception.It doesn't throw any exception in the method.
+It specify that there may occur an exception in the method.It is always used with the method signature.
+sing throws keyword, we can declare both checked and unchecked exceptions. However, the throws keyword can be used to propagate checked exceptions only.
+We are allowed to throw only one exception at a time i.e. we cannot throw multiple exceptions
+
+Exception Propagation:
+transfer the exception handling responsibility to called method 
+If any exception thrown in the first method of the stack and it's not handled in another called method and again exception is dropped down until they caught or reach bottom of the code. 
+This is called Exception Propagation.
+
+
+  void m(){  
+    int data=50/0;  
+  }  
+  void n(){  
+    m();  
+  }  
+  void p(){  
+   try{  
+    n();  
+   }catch(Exception e){System.out.println("exception handled");}  
+  }  
+
+
+
+-------Exception Handling with Method Overriding in Java
+
+1. If the Parent class declare the Exception(Exception) and inherited child class does not have exception--------work
+2. If Parent class doesn't declare the Exception and child class have unchecked Exception(ArithmeticException ) --work
+3. If Parent class doesn't declare the Exception and child class have checked Exception(IOException  ) ------won't work
+4. If the Parent class declare the Super Exception(Exception) and inherited child class have child Exception(ArithmeticException) --work
+5. If the Parent class declare the Super Exception(ArithmeticException) and inherited child class have child Exception(Exception) --work
+6. If both Parent class and child  class have same exception-----work.
+
+
+ --CustomizedException:
+This is to create our own exception as per the business logic as developer we have to understand where are the possible areas to rise exceptions
+we can create CustomizedException by extending Exception class and make Constructor chaining.
+
+

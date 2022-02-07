@@ -1,0 +1,29 @@
+Multitasking
+Multitasking is a process of executing multiple tasks simultaneously. We use multitasking to utilize the CPU. Multitasking can be achieved in two ways:
+
+Process-based Multitasking (Multiprocessing)
+Thread-based Multitasking (Multithreading)
+
+At least one process is required for each thread.
+one process can have multiple threads.
+ At a time one thread is executed only.
+
+Thread
+A thread is smallest unit of processing uses a shared memory area.
+Threads share the same address space'
+Cost of communication between the thread is low.(Switching between Threads is easy)
+Threads are independent. If there occurs exception in one thread, it doesn't affect other threads. It uses a shared memory area.
+
+
+Process 
+Each process has an address in memory. In other words, each process allocates a separate memory area.
+A process is heavyweight.
+Cost of communication between the process is high
+
+---------------------------Java Thread class----------------------
+
+Java provides Thread class to achieve thread programming. 
+Thread class provides constructors and methods to create and perform operations on a thread. 
+Thread class extends Object class and implements Runnable interface
+
+Life cycle of a Thread (Thread States)

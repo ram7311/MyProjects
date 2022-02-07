@@ -1,0 +1,15 @@
+     Arrays	                                                                            Collections
+
+1. Fixed in size	                                                         1.Growable in size
+2.Only homogenious elements will be added	                                 2.Both homogenious and heterogenious can be added
+3.Wrt to memory allocation arrays not good	                                 3.With respect to memory allocation collection is good
+4.Wrt to perfomance Arrays are good	                                         4. with respect to perfomance collection is not good
+5.Underlying data structure(readymade) methods not available                 5.Underlying data structure(readymade) methods available
+6.can hold primitive and objects	                                         6. can hold only objects
+
+
+       ArrayList	                                                                     LinkedList
+
+1.                                                                                    1.Growable in size
+2.Only homogenious elements will be added	                                 2.Both homogenious and heterogenious can be added
+

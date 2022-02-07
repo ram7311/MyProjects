@@ -1,0 +1,15 @@
+create table sys.weather_report(cityname varchar(50),pincode int, temparature varchar(10));
+
+ALTER TABLE sys.weather_report ADD PRIMARY KEY(pincode);
+
+INSERT INTO `sys`.`weather_report`
+(`cityname`,
+`pincode`,
+`temparature`)
+VALUES('Palakol',534260,'30C');
+
+update sys.weather_report set temparature='20C' where pincode=534260;
+
+update sys.weather_report set temparature='' where pincode=534260;
+
+SELECT * FROM sys.weather_report;

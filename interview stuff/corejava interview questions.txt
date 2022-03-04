@@ -1,0 +1,998 @@
+1.a)What is Functional interface?
+
+An Interface that contains exactly one abstract method is known as functional interface.
+These interfaces are also called Single Abstract Method interfaces (SAM Interfaces).
+It can define N no of static and default method.
+ 
+Ex: Runnable,Callable,Comparator,Comparable
+
+Use:
+It is introduced to enable functional programming like Lamda expression to pass function as a argument directly to the method.
+It saves alot of code.
+
+package com.tutorial;
+
+interface Drawable{  
+    public void draw();  
+}  
+public class FunctionalP{  
+    public static void main(String[] args) {  
+    	int width=10;
+    	Drawable p=new Drawable() {
+    			public void draw() {
+    		System.out.println("inside the draw method: "+width);}    			
+    	};   	
+    	p.draw();
+    }}
+
+}  
+
+b)Lamda Expression:
+
+Lamda expression is a new feature  which is added to the java8.
+Lamda expression is ananumous class it does not have name return type or access modifier.
+parameter -> expression
+functional inteface reference can be used to hold the lambda expression.
+()->
+Ex:
+
+package com.tutorial;
+
+interface Drawable{  
+    public void draw();  
+}  
+public class FunctionalP{  
+    public static void main(String[] args) {  
+    	int width=10;
+
+    	Drawable p= ()->{     //using Lamda expression
+    		System.out.println("inside the draw method: " +width);  
+    	};    	
+    	p.draw();
+    }}
+
+c) Why we need Lamda Expressions if we have Inner Classes for Implementing the Funcational  Interfaces?
+A lambda expression can implement a functional interface by defining an anonymous function that can be passed as an argument to some method.
+It saves a lot of code.In case of lambda expression, we don't need to define the method again for providing the implementation. 
+Here, we just write the implementation code.
+
+Use: With Lamda Expression we can write very concise code so that readability of the application will be improved.
+to bring benifits of functional programming into java Labmda expression is introduced.
+
+2.Difference B/W HashMap and ConcurrentHashMap?
+HashMap: null value is allowed for key and value.
+If one thread iterating the object if another thread try to add/modify the contents of Object then Run-time exception is observed.(It is not thread safe).
+
+ConcurrentHashMap:  null value is not allowed for key and value.
+If one thread iterating the object then more threads can iterate the object(It is thread safe).
+
+3.What is concurrentmodification exception?
+When will occur ConcurrentModificationException ?
+
+While one thread is Iterating the HashMap object, if other thread try to add/modify the contents of Object then we will get Run-time exception saying 
+ConcurrentModificationException.
+
+4.How hashmap works internally?
+
+Whenever we create object for HashMap, a array of bucket will be created with size 16(0-15).
+each bucket is called as a node/linked list.
+Map <String,Integer> m = new HashMap <>();
+m.put("suk",1);
+
+put(Key k, value v);
+put() calculate the hash of the key that is hashcode.
+
+hashcode= hash(key);  <<< Bigger value>> 1111123
+hash code is computed to index value.
+index= hash &(n-1)
+hash()is the method it will take the key and will insert to the node.
+based on the index linked list will be created.
+Linked list stores: Key, value, next and hashcode
+Hashcode help to store the key in specific index.and while retriving the key using hashcode it is easy.
+
+
+
+5.what is the difference between Arraylist and vector?
+ArrayList: Speed is high because of non-synchronization.
+We can save the memory sincec the Arraylist size of the array will incremented by 50%
+It is not legacy.
+
+Vector: It is less speed since the waiting time is present in synchronization.
+Memory may be wasted in Vector since size of the array is incremented by 100%.
+It is legacy.
+
+
+
+6.Explain Exception  Hierarchy?
+Object(class)---> Throwable(super class)----> Errors
+                                        ----> Exceptions -----------> Checked Exceptions
+										                 -----------> Un-checked Exception
+
+7.What is differnce between CheckedException and UncheckedException?
+
+CheckedException: Checked Exceptions are checked by the compiler wether programmer handled the exception or not at compiler time.
+From the super class Throwable class Except Runtime exceptions all are checked exceptions.
+Ex: SQL Exception, ClassNotFOundException etc..
+
+UncheckedException: Unchecked exceptions are not cecked by the compiler wether programmer handled or not at runtime.
+only runtime exceptions are un chekced exceptions.
+Ex: Arithmetic Exception, ArrayIndexOutOfboundException etc..
+
+8.What is dynamic polymorphism?
+polymorphism : many behaviours at a time.
+              one message to be displayed in different form based on given input.
+
+compile time : compiler time polymorphism can be achieved through method overloading
+               since the input values passed at compiler time it is called compile time polymorphism.
+
+run time(Dynamic)     : Runtime polymorphism can be achieved through the methooverriding 
+               since the objects are created at runtime we can call runtime polymorphism.
+			   Ex: Bank(RateOfInterest method)
+			   
+9.a)How do you make your class as immutable?
+
+Immutable: Unchanged behaviour of the object is called Immutable.
+           Once we create string object we are not allowed to do any changes if we try to do any changes another object will be created.
+Use: Object can be shared among all the other threads so it is thread safe.
+
+class as Immutable:
+Declare the class as final so it can’t be extended.
+Make all fields private so that direct access is not allowed.
+Don’t provide setter methods for variables.
+Make all mutable fields final so that its value can be assigned only once.
+
+b) What is use of immutable classes?
+Immutable objects are thread safe so will not have synchronization issues.
+
+Simplicity: Since in the case of immutable class, each class is in a single state; therefore, it is a simple design pattern.
+Thread Safe: Another advantage of immutable class comes in the case of a multithreaded environment where no synchronization is required because of the thread-safe nature of the immutable class.
+Robust Design: Writing immutable classes in an application results in a robust code.
+
+
+Ex:public final class Employee  
+{    
+final String pancardNumber;    
+public Employee(String pancardNumber)  
+{    
+this.pancardNumber=pancardNumber;    
+}  
+public String getPancardNumber(){    
+return pancardNumber;    
+}    
+}    
+public class ImmutableDemo  
+{  
+public static void main(String ar[])  
+{  
+Employee e = new Employee("ABC123");  
+String s1 = e.getPancardNumber();  
+System.out.println("Pancard Number: " + s1);  
+}  
+}  
+
+10.Difference between String,StringBuffer,StringBuilder?
+String: 
+	table
+Asynchrinized
+
+StringBuffer:
+Mutable
+It is synchrinized,only one thread is allowed to access the object, not Thread safe,slow because of the waiting time
+
+StringBuilder: 
+Mutable
+It is Asynchronized multiple threads can access,thread safe, Fast
+
+11.some logical questions from string(Like count no of occurennce of character from a given string)
+package com.pract;
+
+public class Noofoccurance {
+
+	public static void main(String[] args) {
+		String str2= "Aaaaabdbcceddjhgjhg";
+		String str= str2.toLowerCase();
+		getCharoccurance(str,'a');
+	}
+	public static void getCharoccurance(String str,char val) {
+		int count=0;
+		for(char ch: str.toCharArray()) {
+			if (ch== val) {
+				count++;
+			}
+			
+		}
+		System.out.println("no of occurance of " +val+ " is " +count);
+	 }
+}
+  
+
+12.What are Marker Interfaces and Give Examples?
+
+definition: 
+An interface that does not contain methods, fields, and constants is known as marker interface.
+
+Use:
+Marker interface is used as a tag that inform the Java compiler by a message so that it can add some special behavior to the class implementing it
+In short, it indicates a signal or command to the JVM
+It delivers the run-time type information about an object to the JVM.
+
+Ex: Cloneable and Serializable
+
+Cloneable:
+ It indicates the clone() method of the Object class. If we do not implement the Cloneable interface in the class and invokes the clone() method,
+ it throws the ClassNotSupportedException.
+
+13.Difference between final,finally,finalize?
+
+Final : 
+can be used for (variables, ,methods,classes) for final variable,method,class we can't inherite to the other clases.
+By using Final keyword we can ristrict the user to access the data.
+
+Finally:  
+Finally is a block used in Exception handling where irrespective of the exception finally block will be execute.
+Java finally block is a block used to execute important code such as closing the connection, etc
+
+Finalize(): is a method is called just before object is garbage collected.
+It is like a cleaning activily to minimize the memory leaks."
+
+
+14.How do you make your class as singleton?
+
+Singleton class: For any java class If we are allowed to create only one object such type of class is called Singleton class.
+Ex:RunTime class 
+Use: If Several people have same requirement then it is not recommended to create seperate object for every requirement.
+     Performance and memory utilisation 
+
+-- Create Private constructor-- private Test()
+-- private static variable   -- private static Test t=new Test();
+-- public factory method      -- public static Test getInstance() which return object reference.
+Ex:Approach1
+public class SinletoneP {
+
+	public static void main(String[] args) {
+          Test obj1=Test.getInstance();
+          Test obj2=Test.getInstance();
+	}
+}
+
+class Test{
+	private static Test obj=new Test();
+	 private Test() {
+		 System.out.println("inside the constructor");
+	 }
+		public static Test getInstance()
+		{ 
+			return obj;
+		}
+}  
+Ex:Approach2
+	private static Test t;
+	 private Test() {                            
+          	 System.out.println("inside the constructor");
+            }
+	 public static Test getInstance() {
+	  if(t==null) {
+		  t= new Test();
+	  }
+	return t;
+	  }
+	 }
+
+15.Difference between abstract class and interface?
+Interface:
+If we don't know anything about the Object implementation just we have specifications then will go for Interface.
+Every method inside interface is abstract pubic methods.
+Members of the java interface are public only bydefault.
+Interface can be implemented using implements keyword.
+Inside values should be initilaized instrad of declaration.
+
+Abstraction:
+If we know partial implementation of the Object implementation just we have specifications then will go for Interface.
+Abstract class can have abstract or non-abstract methods.
+A Java abstract class can have class members like private, protected, etc.
+An abstract class can be extended using keyword "extends".
+
+16.what is optional in java 8?
+Java introduced a new class Optional in jdk8. 
+You must import java.util package to use this class. 
+It is a public final class and used to deal with NullPointerException in Java application. 
+It provides methods which are used to check the presence of value for particular variable.
+
+Use:To avoid abnormal termination, we use the Optional class
+
+Ex:
+import java.util.Optional;  
+public class OptionalDemo{  
+    public static void main(String[] args) {  
+        String[] words = new String[10];  
+        Optional<String> checkNull = 
+                      Optional.ofNullable(words[5]);  
+        if (checkNull.isPresent()) {  
+            String word = words[5].toLowerCase();  
+            System.out.print(word);  
+        } else  
+            System.out.println("word is null");  
+    }  
+} 
+
+17. Thread life cycle ?
+
+
+New/Born state        ---- When the new thread is created it will enter into the new state.
+Ready/Runnable state  ---- 	Once the thread is stated then it will enter into the Running state.
+
+Running state         ----  If Thread scheduler allocates the processor it will go the running state.                           
+Waiting state         ---- 	 Whener Sleep(),join(),wait() methods are called i will enter into the waiting state.
+Dead                  ----  Once the given task is completed it will enter into the dead state.
+
+28. static vs final ?
+Static:
+Sttaic variables values can be changed with the help of Staic blocks and methods.
+It's not compulsory to initialise the static variables at the time of declaration.
+only static methods have access to call static data and can be called by other static methods.
+
+Final:
+Once the variable is initialised as staic we can't change the value.
+It is compulsory to initialize the final variable at the time of its declaration.		
+can't be inherited.		
+ 
+ 
+19.OOPs features?
+
+Encapsulation
+Polymorphism
+Inheritance
+Abstraction
+Data hiding
+
+20. Thread vs Runnable ? Which is best for performance ?(How many ways to create thread ?)
+Thread can be created in 2 ways
+1> extending the thread
+2> implementing runnable interface
+
+implementing runable interface is the best choice.
+while implementing Runnable interface we can extends any other class. Hence we are able to use the benefits of Inheritance.
+
+21. Throw vs throws ?
+
+Throw: Throw is the keyword to use customised Exceptions manually.
+Throw come with the method body.
+We are allowed to throw only one exception at a time i.e. we cannot throw multiple exceptions.
+
+Throws: Using Throws keyword we can transfer the Exception handling ability to defaultHandler of the JVM.
+Throws come with the method signature.
+We can declare multiple exceptions using throws keyword that can be thrown by the method.
+
+22. Class loader stages ?
+If any class is notified by the JVM it request "Class Loaded sub system" to load the class file.
+A class loader is an object that is responsible for loading classes.
+There are 3 stages in Class Loader.
+         - Bootstrap Class class loader--search in---Bootsracp class path(jdl/jre/lib/*.jar)
+		 - Extendion class Loader      --search in---Extension class path(jdl/jre/lib/ext/*.jar)
+		 - Appocation class Loader     --search in---Application class path(Environment variables)
+
+"Class Loaded sub system" forward the request to the "Application Class Loader".
+
+"Application Class Loader" forward the request to the "Extendion Class Loader".
+"Extendion Class Loader" forward the request to the "Bootstrap Class Loader".
+
+"Bootstrap Class Loader" search .class file in "Bootstrap Class path..If it is present it will load. Otherwise  it is re-deligate to Extendion
+"Extendion Class Loader" search .class file in "Extendion Class path..If it is present it will load. Otherwise  it is re-deligate to  Application
+If it present in Application then it will be loaded otherwise ClassNotFoundException will come.
+
+
+23. Is it possible to write try and finally with out catch block ?
+Yes, It is possible to have a try block without a catch block by using a final block.
+public class TryBlockWithoutCatch {
+   public static void main(String[] args) {
+      try {
+         System.out.println("Try Block");
+      } finally {
+         System.out.println("Finally Block");
+      }
+   }
+}
+
+24.What is polymorphism ?
+Many behaviours at a time is called polymorphism.
+one message to be displayed in different form based on input given.
+2 types in Polymorphism(runtimea nd compile time)
+
+25.How to create Custom Exception ?
+In java we can create our own exception by extending Exception class is class Custimised Exception.
+It can be done using the keyword thorw.
+
+1.call the superclass parameterized constructor bypassing the message in String format
+MyException(String msg){
+   super(msg);
+}
+2.To display the message override the toString() method.
+
+public String toString(){
+   return " MyException [Message of your exception]";
+}
+
+26.what is diff b/w arraylist and linkedlist? 
+
+ArrayList:In arraylist Insertion and deletion is not easy since every index need to be updated whenever add/delete operations are perfomed.
+For random access arraylist is best choice.
+
+LinkedList:
+Easily can do insertion and delection operations since the linked list is updating with nodes.
+For random access LL is not preferable.
+
+
+27.what is the diff b/w hashmap and hashtable? 
+
+HashMap:
+Null key and values are allowed in HashMap.
+Not Legacy class.
+Not thread safe.
+Performance is high since no waiting time and synchronization.
+
+HashTable:
+Null key and values are allowed in HashMap.
+It is legacy class
+Thread safe.
+Performance is low because of the waiting time, synchronization.
+
+28.diff b/w array and arraylist? 
+
+Array:
+Arrays are fixed in size.
+Only homogeneous elements are allowed
+can hold only primitives.
+Arrays don't have underlying data structure(readymade methods)
+
+Arraylist
+Growable in nature.
+Both homo and heterogenious elements are allowed.
+can hold primitive as well as objects.
+
+29.can i add elements to list , if it is defined as final. 
+yes we can add elements to the list but it can't be inherited to other class.
+ex:final List<String> list= new ArrayList<>();
+     
+
+30.if you pass duplicate key to map what will happen?  
+duplicate values are allowed always.
+Duplicate keys are not allowed if we try to pass the duplicate keys in Map then exception will raise saying java.lang.ClassCastException
+
+
+31.why wait() placed in object class ? why not it is placed in Thread class?
+If we place wait() and notify() and notifyall() methods in thread class it can't be inherited to all the other classes.
+If it is in Object class then it will be available for all the inherited classes to.
+
+
+32.can i use static method inside of interface?
+Yes we can use static methods inside the interface.
+but we can't ovrride with inherite class since the implementation is provided in Interface itself.
+The scope of the static method definition is within the interface only. 
+If same name method is implemented in the implementation class then that method becomes a static member of that respective class
+
+33.difference between hashmap and treemap.
+HashMap:
+In HashMap Null value keys are allowed.
+Heterogenious elements are allowed.
+Key value insertion order is not allowed.
+
+TreeMap:
+In Tree Map Null vlaues are not allowed.
+Heterogenious elements are not allowed.
+In Treemap insertion order is done by the sorting algorith that is in ascending order.
+
+34.difference between hashset and treeset.
+
+hashset:
+Insertion order is not allowed.
+heterogenious values are allowed.
+Null values are allowed once.
+
+treeset:
+Insertion order not applicable it will be done by sorting algorithm.
+heterogenious values are not allowed.
+Null values are not allowed.
+
+
+35.what are the access modifiers.
+Public,private,protected,default.
+For Security  : public..> protected..> default..> private
+For Visibility: private..> default..>protected..>Public
+
+
+36. what is method Overring and method overloding
+
+Method Overridinng:
+Same method with same name  but behaviour will be based on the values what we pass through the methods.
+It is also know as Runtime polymorphism since the objects are created at runtime.
+Example:RateofInterest.
+
+Method Overloading:
+Same method with different parameters known as Method Overloading.
+It is also called as compile time poly morphism since the values are passed in compile time.
+
+
+
+37) What is Collection
+If we want to represent group of multiple objects as a single entity we will go for the collection.
+colection Interface defines most common methods which are applicable for any collection object.
+It is considered as root interface of all collection framwork.
+
+
+38)what is encapsulation.
+Process of binding the data with methods is know as Encapsulation.
+picking data we can transfer to all the applications and at the same time it can be protected.
+we can control to access the data(making variable to private)
+we can validate and modify the data(If getter and setter are public)
+we can use for read only write only (If getter and Setters are private)
+
+
+
+39. Explain about Set Collection?
+If we want to represent group of multiple objects as sinle entity where duplicates are not allowed and insertion order is not allowed 
+wil go for Set collection.
+
+Duplicates      : Not Allowed
+Null values     : Allowed
+Heterogenious   : Allowed
+Insertion order : not-Allowed(except for Linked List)
+
+
+
+40. What is treeSet,When use treeSet.
+If we want to represent group of multiple objects as sinle entity where duplicates are not allowed and insertion order is not applicable 
+wil go for tree collection.
+Duplicates      : Not Allowed
+Null values     : Not Allowed
+Heterogenious   : not Allowed
+Insertion order : not-Applivable
+
+
+41)What is finalize() method in Java ? When does Garbage collector calls finalize() method in Java ?
+
+non-referenced objects are eligible for Garbage collection so that space will be availble for next objects. 
+JVM will start the GC() thread and stop the GC() thread.
+Before distraction of the objects GC will call finalize () to close the statements of the objects.
+finalize() : protected filanlize() method of Object class is a method that the Garbage Collector always calls just before object is garbage collected. 
+any class can override the protected finalize() in application.
+It is like a cleaning activily to minimize the memory leaks.
+
+
+
+42) Differnce between sleep() and wait()
+Wait(): The thread which is expecting the updation is responsible to call wait() method
+It thread immediately will enter into the waiting state till get notify() from the running thread.
+Wait() should be called from the synchronized block only. 
+
+Sleep()
+If a thread don't want to perform any operation for particular amout of time then sleep method will be used.
+It will through the exception that should be handled.
+
+
+
+43)What are the differences between Thread and process ?
+
+Thread:
+A thread is smallest unit of processing which uses a shared memory area.
+Threads share the same address space'
+Cost of communication between the thread is low.(Switching between Threads is easy)
+Threads are independent. If there occurs exception in one thread, it doesn't affect other threads. It uses a shared memory area.
+
+Proces:
+
+Each process has an address in memory. In other words, each process allocates a separate memory area.
+A process is heavyweight.
+Cost of communication between the process is high
+
+
+
+44.Write whole Hirachy of collection ?
+See diagram
+
+45.methods in Object class.
+Object class is present in java.lang package
+If a class does not extend any other class then it is a direct child class of Object and if extends another class then it is indirectly derived.
+Therefore the Object class methods are available to all Java classes
+Hence Object class acts as a root of inheritance hierarchy in any Java Program.
+
+1. toString():The toString() provides a String representation of an object and is used to convert an object to String. 
+2. hashCode():For every object, JVM generates a unique number which is hashcode. It returns distinct integers for distinct objects
+3. equals(Object obj): It compares the given object to “this” object (the object on which the method is called)
+4. getClass():It returns the class object of “this” object and is used to get the actual runtime class of the object.
+5. finalize() method: This method is called just before an object is garbage collected. 
+6. clone() :It returns a new object that is exactly the same as this object
+
+
+
+46)diff b/w Iterator and ListIterator and Enumarator?
+
+Enumurator:
+It is type of cursor only applicable to legacy classes.
+By using Enumurator we can get only read access.
+
+Iterator:
+we can apply iterator concept for any collection object and hence it is an Universal cursor.
+By using Iterator we can perform both read an write operations.
+It will work only for forward direction.
+
+Listiterator:
+It is Bidirectional can be forward or backward.
+By using List Iterator we can perform read.write and replace operations.
+
+
+
+47.Explain Javas Features?
+It is Platform Independent
+It is Simple easy to understand.
+It is secure
+It is Multithread:Many tasks simultaneously
+Robust,Portable,High perfomance.
+
+
+
+
+48. What is Abstract Interface?
+An interface is abstract so that it can’t provide any code. 
+An abstract class can give complete, default code which should be overridden. 
+You cannot use access modifiers for the method, properties.
+You can use an abstract class which contains access modifiers.
+
+
+
+49)Why wait(), notify() and notifyAll() must be called from synchronized block or method in java
+
+Wait(),notify(),notifyAll() are used for inter thread communication.
+1.every object in Java has a single lock associated with it. 
+When a thread enters a synchronized method or synchronized block it acquires that lock. 
+All other threads attempting to execute the same code (in synchronized method or synchronized block) have to wait for the first thread to finish and release the lock.
+
+2.wait– Causes the current thread owning the object’s lock to give up lock and go to waiting state.
+notify– Wakes up a single thread that is waiting on this object’s lock.
+notifyAll– Wakes up all threads that are waiting on this object’s lock.
+
+That's why all these three methods must be called from the Synchronized block.
+
+
+
+50.can we create object for final class
+Yes we can create but it can't be inherited to other classes.
+
+
+51)What is meant by Daemon threads in Java ?
+The thread which is executing in the background is called Deamon thread.
+ex:Garbage collector
+use:
+The main objetive of the deamon thread is to provide support for the non-deamon threads like main thread.
+Deamon nature can be inherited parent to child.
+
+52)what is diff b/w collection and collections? 
+Collection: Collection is an interface.
+If we wanted to represent group of objects as a single entity we will go for collection.
+
+Collections:
+It is an utility class present in java.util.*package.
+define several utility methods for collections objects.
+
+53)if we call two time start() method on same object what happend.
+No. After starting a thread, it can never be started again. If you does so, an IllegalThreadStateException is thrown. 
+In such case, thread will run once but for second time, it will throw exception
+
+public class TestThreadTwice1 extends Thread{  
+ public void run(){  
+   System.out.println("running...");  
+ }  
+ public static void main(String args[]){  
+  TestThreadTwice1 t1=new TestThreadTwice1();  
+  t1.start();  
+  t1.start();  
+ }  
+}  
+
+
+54.when you will get ClassNotFoundException and NoClassDefFoundError?
+both of the exceptions that are ClassNotFoundException and NoClassDefFoundError occur when the class is not found at runtime. 
+
+NoClassDefFoundError :
+It is an error that occurs when a particular class is present at compile time, but was missing at run time.
+It is an unchecked exception which a program throws when the requested class is not present at runtime.
+
+ClassNotFoundException:
+is an exception that occurs when you try to load a class at run time using Class.forName() or loadClass() methods and mentioned classes are not found in the classpath.
+ClassNotFoundException is a checked exception and occurs when the Java Virtual Machine (JVM) tries to load a particular class and the specified class cannot be found in the classpath.
+
+ 
+55.what is diff b/w String str="sandeep"; and String str2= new String("sandeep");
+String str="Sandeep";---new object will be created in String constants Pool with reference str.
+String st2=new String("Sandeep")---Another object will be created with reference str2.
+
+System.out.println(str==st2); //False since the reference is different
+
+56.how can you take map into Set? 
+
+ Ex: Set<String> keys =m.keySet();
+	 for( String k:keys) {
+		 System.out.println(k+"   "+m.get(k));
+		 }
+
+ Ex:Set<Map.Entry<String, String>> keys =m.entrySet(); // preferred
+		
+		for(Map.Entry<String, String> e:keys) {
+			System.out.println(e.getKey()+"   "+e.getValue());
+		}
+
+57.diff b/w comparator and comparable? 
+
+comparable: 
+It is meant for Default natural sorting order.
+It is present in java.lang package.
+It is contain only 1 method compareTo()
+All Wrapper class and String class impelements Comparable.
+The logic of sorting must be in the same class whose object you are going to sort.
+The class whose objects you want to sort must implement comparable interface.
+
+Comparator: 
+It is meant for customised sorting order.	
+Present in java.util package
+Two methods compare(), equals()
+Only 2 classes implements Comparator 1.Collator and 2. Rule Based Collator
+The logic of sorting should be in separate class to write different sorting based on different attributes of objects.
+Class, whose objects you want to sort, do not need to implement a comparator interface.
+
+Comparable in Java is an object to compare itself with another object, whereas Comparator is an object for comparing different objects of different classes.
+
+
+
+58.D/W Runnable and Callable.
+Runnable and callable both are Functional interface.
+Thread class does not have constructor for callable interface so we should use ExecutorService  class for executing thread.
+
+Runnable:
+If thread don't wan't to return anything then we will go for Runnable
+It is a part of java.lang package since Java 1.0
+It has only 1 method run()
+It cannot throw a checked Exception.
+In a runnable interface, one needs to override the run() method in Java.
+We can create thread by passing runnable as a parameter.
+
+Callable:
+If thread wan't to return then we will go for Callable
+It is a part of the java.util.concurrent package since Java 1.5.
+It has only 1 method call()
+It can throw a checked Exception.
+In order to use Callable, you need to override the call()
+We can’t create thread by passing callable as parameter 
+
+
+59.what is the use of volatile and synchronized? 
+
+SynchroniZed:
+Synchronized is the keyword which is used for blocks and methods.
+If more than 1 thred is accessing the same object then data inconsistency problme will araise.
+To overcome This data inconsistency problem synchronized is used.
+If any method or block is declared as synchrinized then at a time only one thread is allowed to access the object.
+Other thread will be in waiting state till synchronized method completes execution.
+Performance is relatively low.
+
+volatile:
+If a value of a variable keeps on changing by multiple threads then there may be a chance of a data inconsistency problem
+It is a modifier applicable only for variables.
+If a variable is declared as volatile as for every thread JVM will create a separate local copy.
+very modification performed by the thread will take place in the local copy so that there is no effect on the remaining threads
+Performance is relatively high compare to synchronized keyword.
+ 
+
+60.What is Future Object in MultiThreading
+if we submit a callable object to Executor then after completing the job thread returns an object of the type "Future" that is Future object.
+Use:
+It can be used to retrive the results from the callable job.
+
+Ex:
+
+MyCallable[] jobs={ new MyCallable(10);
+                    new MyCallable(20);
+					new MyCallable(30);
+					new MyCallable(40);}
+					
+ExecuteService service= Executors.newFixedThreadPool(4);
+for(MyCabble job: jobs){
+        Future f= service.submit(job);
+		sysout(f.get());
+		
+
+61.How can we get the value that is returned by call() method in Callable?
+To fetch the result of call () method of Callable interface, java provides Future Object. 
+ExecutorService.submit () method returns Future instance and then get () method of Future, returns the result of call () method of Callable
+
+
+
+62.how to create Thread by using ExecuterService.
+Callable:
+If we submit the callble objects to the Executor after completing the job thread return an object of the Type "Future".
+Future object can be retrive the result from the callble job.
+
+Java.util.concurrent.Callable has been introduced in JDK 5 . Callable is a thread that returns the result.
+There is a method call() in Callable interface that must be overridden for computation task. To run Callable, submit() method of ExecutorService is used. 
+ExecutorService also provides invokeAll() and invokeAny () method to run Callable threads. To fetch the result of call() method of Callable interface, java provides Future class.
+ExecutorService.submit() method returns Future instance and then get() method of Future, returns the result of call() method of Callable.
+ 
+class MyCallableP implements Callable{
+     int num;
+     MyCallableP(int num){
+    	 this.num=num;
+     }    
+	@Override
+	public Object call() throws Exception {
+		System.out.println(Thread.currentThread().getName()+ "is responsible to find the sume of the firist " +num+ " numbers");
+		
+		int sum=0;
+		for(int i=1;i<=num;i++) {
+			sum=sum+i;
+		}
+		return sum;
+	}	
+}
+
+public class MyCallableDemo {
+
+	public static void main(String[] args) throws Exception{
+		
+		MyCallableP[] jobs= { 
+				              new MyCallableP(10),
+				              new MyCallableP(20),
+				              new MyCallableP(30),
+				              new MyCallableP(40),
+				              new MyCallableP(50)};
+	
+	ExecutorService service= Executors.newFixedThreadPool(3);
+	for(MyCallableP job:jobs) {
+		Future f=service.submit(job);
+		System.out.println(f.get());
+	}
+	service.shutdown();
+	}
+	
+63.how can you take map into list?
+		Map m=new HashMap();
+		m.put(101, "Sukanya");
+		m.put(102, "Sukanya1");
+		m.put(103,"Sukanya2");
+		m.put(104, "Sukanya3");
+		m.put(105, "Sukanya4");
+		m.put(106, "Sukanya5");
+		m.put(107, "Sukanya6");
+
+		System.out.println("\n" + "printing keys : ");
+		
+		List<Integer> keys1 =  new ArrayList(m.keySet());  //[101,102,103....107]
+		 keys1.forEach(System.out::println);
+		
+		 System.out.println("\n" + "printing  values: ");
+			
+			List<String> keys2 =  new ArrayList(m.values());
+			 keys2.forEach(System.out::println);
+			 
+			 
+64.how can you take map into list?	
+Write logic for converting List of employee Objects into map based on the employee city by using javaS features in single line?		 
+package com.pract;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+class StudentP{
+	private int Id;
+	private String name;
+	
+	public StudentP (Integer Id,String name){
+		this.Id=Id;
+		this.name=name;}
+	
+	public Integer getId() {
+		return Id;}
+
+	public String getName() {
+		return name;
+	}}
+
+public class ListToMap {
+	public static void main(String[] args) {
+
+		List<StudentP> l= new ArrayList<>();
+		
+		l.add(new StudentP(2,"Sukanya"));
+		l.add(new StudentP(4,"Sukanya"));
+		l.add(new StudentP(1,"Sukanya"));
+		l.add(new StudentP(3,"Sukanya"));
+		
+		Map<Integer,String> mp= new HashMap<>();
+		
+		for(StudentP su :l) {
+			mp.put(su.getId(),(su.getName()));
+		}
+		 System.out.println("Map  : " + mp);
+	}
+
+}			 
+ 
+
+
+65.How can we sort list of employees based on the employeeNo and employeeName by using javaS  features?
+
+package com.tutorial3.collections;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Comparator;
+
+ class EmployeeE  {
+	   int EmpNo;
+	   String EmpName;
+  public EmployeeE(int empNo, String empName) {
+		super();
+		EmpNo = empNo;
+		EmpName = empName;
+	}
+
+@Override
+public String toString() {
+	return "EmployeeE [EmpNo=" +EmpNo+" ,EmpName=" +EmpName+ "] " ;
+	
+}}
+public class EmployeeSort {
+
+	public static void main(String[] args) {
+			
+		List<EmployeeE> l= new ArrayList<>();
+		l.add(new EmployeeE(101, "Barath"));
+		l.add(new EmployeeE(105, "Arun"));
+		l.add(new EmployeeE(104, "Chai"));
+		l.add(new EmployeeE(102, "Esh"));
+		l.add(new EmployeeE(103, "Dav"));
+		System.out.println("Before sorting");
+		for(EmployeeE ee : l) {
+			System.out.println(ee);}
+		System.out.println();
+		
+		//Collections.sort(l,(e1,e2)-> (e1.EmpNo<e2.EmpNo)?-1:(e1.EmpNo>e2.EmpNo)?1:0); // to sort emp no in ascending order		
+	   //Collections.sort(l,(e1,e2)-> (e1.EmpNo<e2.EmpNo)?1:(e1.EmpNo>e2.EmpNo)?-1:0);  // to sort emp no in descending order
+	 //Collections.sort(l,(e1,e2)->e1.EmpName.compareTo(e2.EmpName));  // names ascending order
+	 Collections.sort(l,(e1,e2)->e2.EmpName.compareTo(e1.EmpName));// names descending order
+	 
+	for(EmployeeE e : l) {
+		System.out.println(e);
+	}
+
+}}
+
+66.what is the difference between synchronized block synchronized method and synchronized keyword and its uses?
+
+synchronized method:
+1.Synchronized method acquires a lock on the whole object. 
+This means no other thread can use any synchronized method in the whole object while the method is being run by one thread
+2.For synchronized methods, the lock will be held throughout the method scope. 
+3.A synchronized static method will acquire a lock in the whole class object.  
+4.In case of synchronized method, lock is acquired by thread when it enter method and released when it leaves method, either normally or by throwing Exception
+5.Synchronized method always locks either on current object represented by class level lock, if its static synchronized method.
+6.A synchronized method uses the method receiver as a lock, ‘this’ for non static methods and the enclosing class for static methods.  
+  
+synchronized block:
+1.Synchronized blocks acquire a lock in object between parentheses after the synchronized keyword. 
+Meaning no other thread can acquire a lock on the locked object until the synchronized block exits.
+2.In the synchronized block, the lock is held only during that block scope also referred to as critical section.  
+3.A synchronized block inside a static method will acquire a lock in the object between parentheses.  
+4.In case of synchronized block, thread acquires lock when they enter synchronized block and released when they leave synchronized block.  
+5.Synchronized block provide granular control over lock, as you can use arbitrary any lock to provide mutual exclusion to critical section code.
+6.Synchronized blocks use the expression as a lock.  
+
+65.Constructor is there then what is the use of non-static.
+
+66.Java8 Features.
+
+14.what is stream api in java ? simple programm on stream api?
+In HashMap if hashing collision occure then how to resolve it.
+8.can you explain the internal flow of hashmap?
+
+19. Write a code for checking the number is prime or not? 

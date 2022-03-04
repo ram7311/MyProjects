@@ -1,0 +1,67 @@
+Monolithic:
+----------
+JMS is monolithic application entire modules will be in single unit ref : monolithic.jpg
+Advantages:
+Simple to develop
+Simple to build and deploy
+
+Disadvantages :
+Difficult to manage.
+for single change redeployment of whole application.
+Difficult to adapt new technology for single functionality.
+single bug may down whole application.
+
+Microservices
+-------------
+Microservies are the small services that work together.
+These small services communicating with each other directly using light weight protocols like HTTP.
+
+Advantages:
+Possible to change each service individually rather than upgrading in the entire application.
+One service may down without impacting to others.
+Easily use different technology for building different microservices.
+Less dependency, Loosely coupled
+
+ref: Microservie_architecture.jpg
+
+The Hystrix Dashboard displays the health of each circuit breaker in an efficient manner.
+
+Our Project:
+===========
+User microservice internally calls contact microservice for that we can directly use http://localhost:9002/contact/1004 but this is hardcoded.
+so we are using Eureka server
+Eureka Server:
+-------------
+Eureka Server is an application that holds the information about all client-service applications. 
+Every Micro service will register into the Eureka server and Eureka server knows all the client applications 
+running on each port and IP address.
+
+We are using gateway microservice http://localhost:8999/user/1001 this 8999 port is belongs to gateway app it will route to corresponding 
+microservice based on the given path in application.yml
+
+Hystrix DashBoard:
+-----------------
+To monitoring our micoservices what are down or up in dashboard manner...not there in our project
+
+configserver:
+------------
+
+This is cloud server which will fetch the data from application.properties which is located in github
+http://localhost:9296/actuator/default --> you can see same data in application.properties in github
+
+Zipkin:
+------
+Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems
+in service architectures. Features include both the collection and lookup of this data.
+
+download zipkin jar from zipkin.io --> java -jar zipkin.jar -->it will give host http://127.0.0.1:9411/ This is UI & same host we need to configure in 
+user,contact microservices and add zipkin and slueth dependencies in these two microservices
+Once we hit request then you can find like below in console
+[user-service,f03db0b7d8bcbfec,f03db0b7d8bcbfec] 
+-Service name,Trace ID        ,Span ID
+by checking this trace ID we can have look at each console
+We can trace all requests in zipkin UI --> http://127.0.0.1:9411/ 
+
+Resources :
+https://www.youtube.com/watch?v=_PQd6aZ-ANk&ab_channel=LearnCodeWithDurgesh
+https://www.youtube.com/watch?v=BnknNTN8icw&ab_channel=DailyCodeBuffer

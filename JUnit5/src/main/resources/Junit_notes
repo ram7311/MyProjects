@@ -1,0 +1,18 @@
+Junit configure in eclipse --buildpath-->add library-> Junit
+
+to make one method test case then it must follow below rules
+access modifier should be public only
+no return type = void only
+----------
+it does not follow any execution order by default
+
+To-do:
+******
+create Boot maven project JUnit5 by adding below dependency
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-suite-engine</artifactId>
+    <version>1.8.1</version>
+</dependency>
+
+practice @Suite
